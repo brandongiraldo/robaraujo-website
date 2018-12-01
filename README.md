@@ -1,6 +1,6 @@
 # robaraujo-website
 
-Lets put a fresh coat of paint on an old website, http://http://robaraujo.com
+Lets put a fresh coat of paint on an old website, [robaraujo.com](http://robaraujo.com)
 
 ## What's wrong with the old site?
 
@@ -35,7 +35,7 @@ Couple of things...
 
 * Look into actually hooking into Facebook / Instragram APIs instead of injecting iframes so the site can update dynamically.
 
-## Stack
+## Tools
 
 * Backend - Node / Express
 * Frontend - React / Webpack
@@ -49,3 +49,7 @@ Nah, and while I ❤️ TypeScript, I think for this small website we don't need
 ### Redux?
 
 Nah, this is not a single page application with state, its a static webpage for displaying content. There's a form, thats about it. Not worth using Redux.
+
+## The Application
+
+Shout out to [simple-react-full-stack](https://github.com/crsandeep/simple-react-full-stack) for the boilerplate setup. 
