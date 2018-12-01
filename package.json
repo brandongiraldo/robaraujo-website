@@ -12,6 +12,15 @@
   },
   "author": "Brandon Giraldo",
   "license": "ISC",
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ]
+  },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "express": "^4.16.3",
