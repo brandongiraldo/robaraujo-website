@@ -4,13 +4,15 @@ import {Component} from "react";
 export default class Posts extends Component {
   state = {
     links: null,
+    title: null,
   };
 
   componentDidMount() {
     fetch('/api/posts')
         .then(res => res.json())
         .then(data => this.setState({
-          links: data.links
+          links: data.links,
+          title: data.title
         }));
   }
 
@@ -18,13 +20,18 @@ export default class Posts extends Component {
     return (
         <>
           {this.state.links ? (
-              <>
-                <ul>
-                  {this.state.links.map(function(link, index){
-                    return <div key={index} dangerouslySetInnerHTML={{ __html: link }} />
+              <div className="container">
+                <h1>{this.state.title}</h1>
+                <div className="row">
+                  {this.state.links.map((link, index) => {
+                    return (
+                      <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6" key={index}>
+                        <div key={index} dangerouslySetInnerHTML={{ __html: link }} />
+                      </div>
+                    )
                   })}
-                </ul>
-              </>
+                </div>
+              </div>
           ) : (
               <li>Loading...</li>
           )}

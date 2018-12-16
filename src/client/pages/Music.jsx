@@ -10,21 +10,31 @@ export default class Music extends Component {
     fetch('/api/music')
         .then(res => res.json())
         .then(data => this.setState({
-          links: data.links
+          links: data.links,
+          title: data.title
         }));
   }
 
   render() {
+    const links = this.state.links;
     return (
         <>
           {this.state.links ? (
-              <>
-                <ul>
-                  {this.state.links.map(function(link, index){
+              <div className="container">
+                <h1>{this.state.title}</h1>
+                <div className="row">
+                  <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                  {links.splice(0, links.length / 2).map((link, index) => {
                     return <div key={index} dangerouslySetInnerHTML={{ __html: link }} />
                   })}
-                </ul>
-              </>
+                  </div>
+                  <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    {links.map((link, index) => {
+                      return <div key={index} dangerouslySetInnerHTML={{ __html: link }} />
+                    })}
+                  </div>
+                </div>
+              </div>
           ) : (
               <li>Loading...</li>
           )}

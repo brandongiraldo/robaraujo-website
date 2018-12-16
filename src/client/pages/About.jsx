@@ -1,13 +1,7 @@
 import * as React from 'react';
 import {Component} from "react";
 import TwoColumn from "../layouts/TwoColumn";
-import styled from '@emotion/styled';
-
-const Image = styled.img`
-  display: block;
-  max-width: 100%;
-  height: auto;
-`;
+import Image from "../components/Image";
 
 export default class About extends Component {
   state = {
@@ -18,12 +12,12 @@ export default class About extends Component {
 
   componentDidMount() {
     fetch('/api/about')
-        .then(res => res.json())
-        .then(data => this.setState({
-          title: data.title,
-          image: data.image,
-          description: data.description
-        }));
+      .then(res => res.json())
+      .then(data => this.setState({
+        title: data.title,
+        image: data.image,
+        description: data.description
+      }));
   }
 
   render() {

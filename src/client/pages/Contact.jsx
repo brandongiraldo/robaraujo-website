@@ -1,6 +1,8 @@
 import * as React from 'react';
 import {Component} from "react";
-import Form from "../components/form/Form";
+import Form from "../components/Form";
+import TwoColumn from "../layouts/TwoColumn";
+import Image from "../components/Image";
 
 export default class Contact extends Component {
   state = {
@@ -21,11 +23,9 @@ export default class Contact extends Component {
     return (
         <>
           {this.state.title ? (
-              <>
-                <h1>{this.state.title}</h1>
-                <img src={this.state.image} alt={this.state.name}/>
-                <Form/>
-              </>
+              <TwoColumn title={this.state.title}
+                         contentLeft={<Image src={this.state.image} alt={this.state.name}/>}
+                         contentRight={<Form/>} />
           ) : (
               <li>Loading...</li>
           )}

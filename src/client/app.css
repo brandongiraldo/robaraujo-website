@@ -6,3 +6,7 @@ body {
   text-align: center;
   margin: auto;
 }
+
+iframe {
+  width: 100% !important;
+}
