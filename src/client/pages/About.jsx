@@ -1,5 +1,13 @@
 import * as React from 'react';
 import {Component} from "react";
+import TwoColumn from "../layouts/TwoColumn";
+import styled from '@emotion/styled';
+
+const Image = styled.img`
+  display: block;
+  max-width: 100%;
+  height: auto;
+`;
 
 export default class About extends Component {
   state = {
@@ -22,11 +30,9 @@ export default class About extends Component {
     return (
         <>
           {this.state.title ? (
-              <>
-                <h1>{this.state.title}</h1>
-                <img src={this.state.image} alt={this.state.name}/>
-                <p>{this.state.description}</p>
-              </>
+            <TwoColumn title={this.state.title}
+                       contentLeft={<Image src={this.state.image} alt={this.state.title} />}
+                       contentRight={<p>{this.state.description}</p>} />
           ) : (
               <li>Loading...</li>
           )}

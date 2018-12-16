@@ -22,7 +22,10 @@
     ]
   },
   "dependencies": {
+    "@emotion/core": "^10.0.5",
+    "@emotion/styled": "^10.0.5",
     "babel-polyfill": "^6.26.0",
+    "bootstrap-css-only": "^4.1.1",
     "express": "^4.16.3",
     "html-webpack-template": "^6.2.0",
     "react": "^16.5.2",
