@@ -22,7 +22,7 @@ export default class Home extends Component {
     return (
         <>
         {this.state.name ? (
-            <>
+            <div className="container">
               <h1>{this.state.name}</h1>
               <ul>
                 {this.state.subtitles.map(function(subtitle, index){
@@ -34,7 +34,7 @@ export default class Home extends Component {
                   return <a href={link.url} key={index}>{`link #${index}`}</a>;
                 })}
               </ul>
-            </>
+            </div>
         ) : (
             <li>Loading...</li>
         )}

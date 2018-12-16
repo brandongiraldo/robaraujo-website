@@ -1,14 +1,12 @@
 import React  from 'react';
-import './app.css';
-import 'bootstrap-css-only';
+import './resources/app.css';
+import './resources/bootstrap.min.css';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 
 const App = (props) => {
   return (
-      <>
-        <NavBar/>{props.children}<Footer/>
-      </>
+      <><NavBar/>{props.children}<Footer/></>
   );
 };
 

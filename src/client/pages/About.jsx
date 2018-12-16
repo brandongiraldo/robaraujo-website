@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {Component} from "react";
 import TwoColumn from "../layouts/TwoColumn";
-import Image from "../components/Image";
 
 export default class About extends Component {
   state = {
@@ -25,7 +24,7 @@ export default class About extends Component {
         <>
           {this.state.title ? (
             <TwoColumn title={this.state.title}
-                       contentLeft={<Image src={this.state.image} alt={this.state.title} />}
+                       contentLeft={<img src={this.state.image} alt={this.state.title} className="img-responsive"/>}
                        contentRight={<p>{this.state.description}</p>} />
           ) : (
               <li>Loading...</li>

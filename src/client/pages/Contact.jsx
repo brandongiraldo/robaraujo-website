@@ -2,7 +2,6 @@ import * as React from 'react';
 import {Component} from "react";
 import Form from "../components/Form";
 import TwoColumn from "../layouts/TwoColumn";
-import Image from "../components/Image";
 
 export default class Contact extends Component {
   state = {
@@ -24,7 +23,7 @@ export default class Contact extends Component {
         <>
           {this.state.title ? (
               <TwoColumn title={this.state.title}
-                         contentLeft={<Image src={this.state.image} alt={this.state.name}/>}
+                         contentLeft={<img src={this.state.image} alt={this.state.name} className="img-responsive"/>}
                          contentRight={<Form/>} />
           ) : (
               <li>Loading...</li>

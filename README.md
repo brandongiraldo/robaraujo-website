@@ -38,9 +38,9 @@ Couple of things...
 ## Tools
 
 * Backend - Node / Express
-* Frontend - React / Webpack
+* Frontend - React / Webpack / Bootstrap
 * Quality of life tools - Prettier / Nodemon / Babel
-* Data Store - JSON files / Mongo ? TBD.
+* Data Store - Mongo DB
 
 ### TypeScript?
 
@@ -48,8 +48,54 @@ Nah, and while I ❤️ TypeScript, I think for this small website we don't need
 
 ### Redux?
 
-Nah, this is not a single page application with state, its a static webpage for displaying content. There's a form, thats about it. Not worth using Redux.
+Nah, this is not a single page application with state, its a static web page for displaying content. There's a form, thats about it. Not worth using Redux.
 
 ## The Application
 
-Shout out to [simple-react-full-stack](https://github.com/crsandeep/simple-react-full-stack) for the boilerplate setup. 
+Shout out to [simple-react-full-stack](https://github.com/crsandeep/simple-react-full-stack) for the boilerplate setup.
+
+### Install
+
+Install dependencies using npm / yarn.
+
+```
+npm install
+```
+
+### Run for development
+
+To start the application in dev mode, run
+
+```
+npm run dev
+```
+
+this will start both the client and server and dev mode.
+
+To start just the client in dev mode, run
+
+```
+npm run client
+```
+
+To start the server in non dev mode, run
+
+```
+npm run server
+```
+
+### Build for production
+
+To build the client and start the server, run
+
+```
+npm run start
+```
+
+To just build the client, run
+
+```
+npm run build
+```
+
+ 
