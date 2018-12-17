@@ -27,7 +27,7 @@ export default class About extends Component {
                        contentLeft={<img src={this.state.image} alt={this.state.title} className="img-responsive"/>}
                        contentRight={<p>{this.state.description}</p>} />
           ) : (
-              <li>Loading...</li>
+              <div>Loading...</div>
           )}
         </>
     );

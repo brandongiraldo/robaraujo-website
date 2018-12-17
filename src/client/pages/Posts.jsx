@@ -33,7 +33,7 @@ export default class Posts extends Component {
                 </div>
               </div>
           ) : (
-              <li>Loading...</li>
+              <div>Loading...</div>
           )}
         </>
     );

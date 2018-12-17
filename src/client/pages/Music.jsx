@@ -36,7 +36,7 @@ export default class Music extends Component {
                 </div>
               </div>
           ) : (
-              <li>Loading...</li>
+              <div>Loading...</div>
           )}
         </>
     );

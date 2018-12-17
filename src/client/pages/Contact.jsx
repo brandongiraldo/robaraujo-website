@@ -26,7 +26,7 @@ export default class Contact extends Component {
                          contentLeft={<img src={this.state.image} alt={this.state.name} className="img-responsive"/>}
                          contentRight={<Form/>} />
           ) : (
-              <li>Loading...</li>
+              <div>Loading...</div>
           )}
         </>
     );

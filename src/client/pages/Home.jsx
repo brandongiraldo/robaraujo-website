@@ -36,7 +36,7 @@ export default class Home extends Component {
               </ul>
             </div>
         ) : (
-            <li>Loading...</li>
+            <div>Loading...</div>
         )}
         </>
     );
