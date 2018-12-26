@@ -3,7 +3,7 @@ import {Route} from 'react-router-dom';
 import '../resources/app.css';
 import '../resources/bootstrap.min.css';
 
-import NavBar from "../components/NavBar";
+import Nav from "../components/Nav";
 import Home from "../pages/Home";
 import About from "../pages/About";
 import Music from "../pages/Music";
@@ -14,7 +14,7 @@ export default class Routes extends React.Component {
   render() {
     return (
         <>
-          <NavBar/>
+          <Nav/>
           <Route path={'/'} exact strict component={Home} />
           <Route path={'/about'} exact strict component={About}/>
           <Route path={'/music'} exact strict component={Music}/>

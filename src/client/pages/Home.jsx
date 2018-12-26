@@ -1,5 +1,12 @@
 import * as React from 'react';
 import {Component} from "react";
+import styled from '@emotion/styled'
+
+const HomeComponent = styled.div`
+  height: 100vh;
+  background: url(http://robaraujo.com/assets/DSC05368.jpg);
+  background-size: cover;
+`;
 
 export default class Home extends Component {
   state = {
@@ -20,8 +27,8 @@ export default class Home extends Component {
 
   render() {
     return (
-        <>
-        {this.state.name ? (
+        <HomeComponent>
+          {this.state.name ? (
             <div className="container">
               <h1>{this.state.name}</h1>
               <ul>
@@ -35,10 +42,10 @@ export default class Home extends Component {
                 })}
               </ul>
             </div>
-        ) : (
+          ) : (
             <div>Loading...</div>
-        )}
-        </>
+          )}
+        </HomeComponent>
     );
   }
 }

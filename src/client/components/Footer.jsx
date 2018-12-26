@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from '@emotion/styled'
 
 const FooterComponent = styled.footer`
-    position: relative;
+  position: relative;
   right: 0;
   bottom: 0;
   left: 0;
