@@ -1,8 +1,12 @@
+var path = require('path');
 const express = require('express');
 
 const app = express();
 
 app.use(express.static('dist'));
+
+var dir = path.join(__dirname, 'public');
+app.use(express.static(dir));
 
 app.use("/api/", require('./routes/home'));
 app.use("/api/about", require('./routes/about'));

@@ -10,7 +10,8 @@ router.get('/', (req, res) => {
           icon: "fa-facebook-official", // from ion-icons set
           url: "https://facebook.com"
         }
-    ]
+    ],
+    heroImage: "public/images/hero.jpg"
   });
 });
 

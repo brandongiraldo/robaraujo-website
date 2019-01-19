@@ -7,9 +7,11 @@ const NavComponent = styled.nav`
   position: absolute;
   top: 0;
   width: 100%;
+  z-index: 1;
 `;
 
 const NavWrapper = styled.div`
+  z-index: 2;
   right: 0;
   position: absolute;
   transition: opacity 0.3s ease-out;

@@ -4,6 +4,7 @@ import {Component} from "react";
 export default class Music extends Component {
   state = {
     links: null,
+    title: null
   };
 
   componentDidMount() {
@@ -16,12 +17,12 @@ export default class Music extends Component {
   }
 
   render() {
-    const links = this.state.links;
+    const {links, title} = this.state;
     return (
         <>
-          {this.state.links ? (
+          {links ? (
               <div className="container">
-                <h1>{this.state.title}</h1>
+                <h1>{title}</h1>
                 <div className="row">
                   <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                   {links.splice(0, links.length / 2).map((link, index) => {
