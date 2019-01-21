@@ -9,12 +9,33 @@ const HomeComponent = styled.div(props => ({
   transition: `background 0.2s ease-in-out`
 }));
 
-const ContainerComponent = styled.div({
+const Container = styled.div({
   position: `absolute`,
   top: `40%`,
   left: `50%`,
   transform: `translate(-50%, -50%)`,
   color: `#ffffff`,
+});
+
+const IconLink = styled.a({
+  color: `#FFFFFF`,
+  display: `inline`,
+});
+
+const Icon = styled.i({
+  fontSize: `210%`,
+  paddingRight: `20px`,
+});
+
+const NameComponent = styled.h1({
+  paddingBottom: `0px`,
+  marginBottom: `0px`,
+});
+
+const SubtitleComponent = styled.p({
+  textTransform: `uppercase`,
+  marginBottom: `30px`,
+  marginTop: `5px`,
 });
 
 export default class Home extends Component {
@@ -42,20 +63,15 @@ export default class Home extends Component {
         <>
         {name && subtitles && links && heroImage ? (
             <HomeComponent src={heroImage}>
-              <ContainerComponent className="container">
-                <h1>{name}</h1>
-                <ul>
-                  {subtitles.map((subtitle, index) => {
-                    return <li key={index}>{subtitle}</li>;
-                  })}
-                </ul>
+              <Container className="container">
+                <NameComponent>{name}</NameComponent>
+                <SubtitleComponent>{subtitles.join(" · ")}</SubtitleComponent>
                 <ul>
                   {links.map((link, index) => {
-                    return <i className={`fa ${link.icon}`}/>
-                    // return <FontAwesomeIcon icon={link.icon} href={link.url} key={index}/>
+                    return <IconLink key={index} href={link.url}><Icon className={`fa ${link.icon}`}/></IconLink>
                   })}
                 </ul>
-              </ContainerComponent>
+              </Container>
             </HomeComponent>
         ) : (
           <div>Loading...</div>
