@@ -9,6 +9,14 @@ const HomeComponent = styled.div(props => ({
   transition: `background 0.2s ease-in-out`
 }));
 
+const ContainerComponent = styled.div({
+  position: `absolute`,
+  top: `40%`,
+  left: `50%`,
+  transform: `translate(-50%, -50%)`,
+  color: `#ffffff`,
+});
+
 export default class Home extends Component {
   state = {
     name: null,
@@ -34,7 +42,7 @@ export default class Home extends Component {
         <>
         {name && subtitles && links && heroImage ? (
             <HomeComponent src={heroImage}>
-              <div className="container">
+              <ContainerComponent className="container">
                 <h1>{name}</h1>
                 <ul>
                   {subtitles.map((subtitle, index) => {
@@ -43,10 +51,11 @@ export default class Home extends Component {
                 </ul>
                 <ul>
                   {links.map((link, index) => {
-                    return <a href={link.url} key={index}>{`link #${index}`}</a>;
+                    return <i className={`fa ${link.icon}`}/>
+                    // return <FontAwesomeIcon icon={link.icon} href={link.url} key={index}/>
                   })}
                 </ul>
-              </div>
+              </ContainerComponent>
             </HomeComponent>
         ) : (
           <div>Loading...</div>
