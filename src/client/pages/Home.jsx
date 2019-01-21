@@ -33,21 +33,21 @@ export default class Home extends Component {
     return (
         <>
         {name && subtitles && links && heroImage ? (
-          <HomeComponent src={heroImage}>
-            <div className="container">
-              <h1>{name}</h1>
-              <ul>
-                {subtitles.map(function(subtitle, index){
-                  return <li key={index}>{subtitle}</li>;
-                })}
-              </ul>
-              <ul>
-                {links.map(function(link, index){
-                  return <a href={link.url} key={index}>{`link #${index}`}</a>;
-                })}
-              </ul>
-            </div>
-          </HomeComponent>
+            <HomeComponent src={heroImage}>
+              <div className="container">
+                <h1>{name}</h1>
+                <ul>
+                  {subtitles.map((subtitle, index) => {
+                    return <li key={index}>{subtitle}</li>;
+                  })}
+                </ul>
+                <ul>
+                  {links.map((link, index) => {
+                    return <a href={link.url} key={index}>{`link #${index}`}</a>;
+                  })}
+                </ul>
+              </div>
+            </HomeComponent>
         ) : (
           <div>Loading...</div>
         )}

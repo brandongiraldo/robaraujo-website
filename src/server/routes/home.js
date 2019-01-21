@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
           url: "https://facebook.com"
         }
     ],
-    heroImage: "public/images/hero.jpg"
+    heroImage: "public/images/hero-min-min.jpg"
   });
 });
 
