@@ -20,12 +20,13 @@ export default class About extends Component {
   }
 
   render() {
+    const {title, image, description} = this.state;
     return (
         <>
-          {this.state.title ? (
-            <TwoColumn title={this.state.title}
-                       contentLeft={<img src={this.state.image} alt={this.state.title} className="img-responsive"/>}
-                       contentRight={<p>{this.state.description}</p>} />
+          {title ? (
+            <TwoColumn title={title}
+                       contentLeft={<img src={image} alt={title} className="img-responsive"/>}
+                       contentRight={<p>{description}</p>} />
           ) : (
               <div>Loading...</div>
           )}

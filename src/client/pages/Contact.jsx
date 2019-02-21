@@ -6,7 +6,8 @@ import TwoColumn from "../layouts/TwoColumn";
 export default class Contact extends Component {
   state = {
     title: null,
-    image: null
+    image: null,
+    imageAlt: null
   };
 
   componentDidMount() {
@@ -14,16 +15,18 @@ export default class Contact extends Component {
         .then(res => res.json())
         .then(data => this.setState({
           title: data.title,
-          image: data.image
+          image: data.image,
+          imageAlt: data.imageAlt
         }));
   }
 
   render() {
+    const {title, image, imageAlt} = this.state;
     return (
         <>
-          {this.state.title ? (
-              <TwoColumn title={this.state.title}
-                         contentLeft={<img src={this.state.image} alt={this.state.name} className="img-responsive"/>}
+          {title ? (
+              <TwoColumn title={title}
+                         contentLeft={<img src={image} alt={imageAlt} className="img-responsive"/>}
                          contentRight={<Form/>} />
           ) : (
               <div>Loading...</div>
