@@ -9,7 +9,7 @@ export default class About extends Component {
     description: null
   };
 
-  componentDidMount() {
+  componentWillMount() {
     fetch('/api/about')
       .then(res => res.json())
       .then(data => this.setState({
@@ -22,15 +22,9 @@ export default class About extends Component {
   render() {
     const {title, image, description} = this.state;
     return (
-        <>
-          {title ? (
-            <TwoColumn title={title}
-                       contentLeft={<img src={image} alt={title} className="img-responsive"/>}
-                       contentRight={<p>{description}</p>} />
-          ) : (
-              <div>Loading...</div>
-          )}
-        </>
+      <TwoColumn title={title} 
+                 contentLeft={<img src={image} alt={title} className="img-responsive"/>}
+                 contentRight={<p>{description}</p>} />
     );
   }
 }

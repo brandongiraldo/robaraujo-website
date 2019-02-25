@@ -41,8 +41,8 @@ const SubtitleComponent = styled.p({
 export default class Home extends Component {
   state = {
     name: null,
-    subtitles: null,
-    links: null,
+    subtitles: [],
+    links: [],
     heroImage: null,
   };
 
@@ -59,17 +59,18 @@ export default class Home extends Component {
 
   render() {
     const {name, subtitles, links, heroImage} = this.state;
+    const subtitle = subtitles.join(" · ");
     return (
         <>
         {name && subtitles && links && heroImage ? (
             <HomeComponent src={heroImage}>
               <Container className="container">
                 <NameComponent>{name}</NameComponent>
-                <SubtitleComponent>{subtitles.join(" · ")}</SubtitleComponent>
+                <SubtitleComponent>{subtitle}</SubtitleComponent>
                 <ul>
-                  {links.map((link, index) => {
-                    return <IconLink key={index} href={link.url}><Icon className={`fa ${link.icon}`}/></IconLink>
-                  })}
+                  {links.map((link, index) =>
+                    <IconLink key={index} href={link.url}><Icon className={`fa ${link.icon}`}/></IconLink>
+                  )}
                 </ul>
               </Container>
             </HomeComponent>

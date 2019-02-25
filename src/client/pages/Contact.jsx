@@ -10,7 +10,7 @@ export default class Contact extends Component {
     imageAlt: null
   };
 
-  componentDidMount() {
+  componentWillMount() {
     fetch('/api/contact')
         .then(res => res.json())
         .then(data => this.setState({
@@ -22,16 +22,10 @@ export default class Contact extends Component {
 
   render() {
     const {title, image, imageAlt} = this.state;
-    return (
-        <>
-          {title ? (
-              <TwoColumn title={title}
-                         contentLeft={<img src={image} alt={imageAlt} className="img-responsive"/>}
-                         contentRight={<Form/>} />
-          ) : (
-              <div>Loading...</div>
-          )}
-        </>
+    return (  
+      <TwoColumn title={title}
+                 contentLeft={<img src={image} alt={imageAlt} className="img-responsive"/>}
+                 contentRight={<Form/>} />
     );
   }
 }
