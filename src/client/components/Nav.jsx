@@ -48,6 +48,11 @@ const Nav = () => {
   return (
       <NavComponent>
         <NavWrapper>
+        <img style={{height: 50,
+                    position: `fixed`,
+                    left: `11%`,
+                    top: 20,
+                    filter: `brightness(0) invert(1)`}}src={"http://robaraujo.com/assets/sig.png"}></img>
           <NavLinkComponent exact={true} activeClassName='is-active' to="/">{'Home'}</NavLinkComponent>
           <NavLinkComponent activeClassName='is-active' to="/about">{'About'}</NavLinkComponent>
           <NavLinkComponent activeClassName='is-active' to="/music">{'Music'}</NavLinkComponent>
