@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom';
 import styled from '@emotion/styled'
 
 const SignatureContainer = styled.div`
-  position: fixed;
+  position: absolute;
   width: 100%;
   z-index: 1;
 `;
