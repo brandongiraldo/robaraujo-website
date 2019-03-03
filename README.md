@@ -51,6 +51,27 @@ Nah, and while I ❤️ TypeScript, I think for this small website we don't need
 
 Nah, this is not a single page application with state, its a static web page for displaying content. There's a form, thats about it. Not worth using Redux.
 
+## TODO
+
+Mostly for myself to keep track of what needs to be done.
+
+- [x] Setup
+- [x] Setup Routing with React Router and Express
+- [x] Frontend file structure
+- [x] Backend file structure
+- [x] static data from node server via REST API
+- [x] fetch() data from server in pages, render out data
+- [x] Add CSS / Styled components to match presentation from previous site
+- [x] Optimize images
+- [x] Add signature to nav
+- [ ] Responsive Nav
+- [ ] Form component
+- [ ] Form validation
+- [ ] Form data processing
+- [ ] Clean up CSS / Styled components
+- [ ] Set up persistant data store
+- [ ] Admin portal for updating data store
+
 ## The Application
 
 Shout out to [simple-react-full-stack](https://github.com/crsandeep/simple-react-full-stack) for the boilerplate setup.
