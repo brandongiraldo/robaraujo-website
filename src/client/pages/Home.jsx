@@ -9,13 +9,16 @@ const HomeComponent = styled.div(props => ({
   transition: `background 0.2s ease-in-out`
 }));
 
-const Container = styled.div({
-  position: `absolute`,
-  top: `40%`,
-  left: `50%`,
-  transform: `translate(-50%, -50%)`,
-  color: `#ffffff`,
-});
+const Container = styled.div`
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  @media (max-width: 768px) {
+    width: 90%;
+  }
+`;
 
 const IconLink = styled.a({
   color: `#FFFFFF`,

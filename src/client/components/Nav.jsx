@@ -2,11 +2,23 @@ import * as React from 'react';
 import {NavLink} from 'react-router-dom';
 import styled from '@emotion/styled'
 
-const NavComponent = styled.nav`
-  text-align: right;
-  position: absolute;
-  top: 0;
+const SignatureContainer = styled.div`
+  position: fixed;
   width: 100%;
+  z-index: 1;
+`;
+
+const SignatureImage = styled.img`
+  height: 50px;
+  position: absolute;
+  top: 20px;
+  filter: brightness(0) invert(1);
+  z-index: 2;
+`;
+
+const NavComponent = styled.nav`
+  width: 100%;
+  height: 100%;
   z-index: 1;
 `;
 
@@ -47,13 +59,12 @@ const NavLinkComponent = styled(NavLink)`
 const Nav = () => {
   return (
       <NavComponent>
+        <SignatureContainer>
+          <div className="container">
+            <SignatureImage src={"public/images/sig-min.png"}></SignatureImage>
+          </div>  
+        </SignatureContainer>
         <NavWrapper>
-        <img style={{height: 50,
-                    position: `fixed`,
-                    left: `11%`,
-                    top: 20,
-                    filter: `brightness(0) invert(1)`}}
-              src={"public/images/sig-min.png"}></img>
           <NavLinkComponent exact={true} activeClassName='is-active' to="/">{'Home'}</NavLinkComponent>
           <NavLinkComponent activeClassName='is-active' to="/about">{'About'}</NavLinkComponent>
           <NavLinkComponent activeClassName='is-active' to="/music">{'Music'}</NavLinkComponent>
