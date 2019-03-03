@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
           url: "https://robaraujo.bandcamp.com/"
         },
     ],
-    heroImage: "public/images/hero-min-min.jpg"
+    heroImage: "public/images/hero-min.jpg"
   });
 });
 
