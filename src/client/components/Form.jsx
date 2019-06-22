@@ -66,10 +66,22 @@ export default class Form extends React.Component {
     };
 
     handleChange = (event) => {
+        const {name, value} = event.target;
         this.setState({
-            [event.target.name] : event.target.value
-        });
+            name : value
+        }, () => this.validateField(name, value));
     };
+
+    validateField = (name, value) => {
+          switch (name) {
+              case "email":
+                  const isValidEmail = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+                  break;
+              default:
+                  break;
+          }
+    };
+
 
     render() {
         return (
