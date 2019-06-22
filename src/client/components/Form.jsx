@@ -68,7 +68,7 @@ export default class Form extends React.Component {
     handleChange = (event) => {
         const {name, value} = event.target;
         this.setState({
-            name : value
+            [name] : value
         }, () => this.validateField(name, value));
     };
 
