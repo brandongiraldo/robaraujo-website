@@ -1,9 +1,8 @@
 import * as React from 'react';
-import {Component} from "react";
 import Form from "../components/Form";
 import TwoColumn from "../layouts/TwoColumn";
 
-export default class Contact extends Component {
+export default class Contact extends React.Component {
   state = {
     title: null,
     image: null,

@@ -1,7 +1,6 @@
 import * as React from 'react';
-import {Component} from "react";
 
-export default class Posts extends Component {
+export default class Posts extends React.Component {
   state = {
     links: [],
     title: null,

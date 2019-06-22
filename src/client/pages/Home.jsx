@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {Component} from "react";
 import styled from '@emotion/styled'
 
 const HomeComponent = styled.div(props => ({
@@ -41,7 +40,7 @@ const SubtitleComponent = styled.p({
   marginTop: `5px`,
 });
 
-export default class Home extends Component {
+export default class Home extends React.Component {
   state = {
     name: null,
     subtitles: [],

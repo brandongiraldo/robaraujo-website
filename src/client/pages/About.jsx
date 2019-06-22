@@ -1,8 +1,7 @@
 import * as React from 'react';
-import {Component} from "react";
 import TwoColumn from "../layouts/TwoColumn";
 
-export default class About extends Component {
+export default class About extends React.Component {
   state = {
     title: null,
     image: null,

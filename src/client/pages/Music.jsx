@@ -1,7 +1,6 @@
 import * as React from 'react';
-import {Component} from "react";
 
-export default class Music extends Component {
+export default class Music extends React.Component {
   state = {
     links: [],
     title: null
