@@ -50,16 +50,36 @@ const TextAreaTitle = styled.h4`
 
 export default class Form extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: "",
+            email: "",
+            subject: "",
+            message: ""
+        };
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(this.state);
+    };
+
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name] : event.target.value
+        });
+    };
+
     render() {
         return (
-            <form className="col-xs-12 col-sm-12 col-md-12 col-lg-12" method="post" action="#contact">
-                <Input placeholder="NAME" type="text" name="name" required=""/>
-                <Input placeholder="EMAIL" type="text" name="mail" required=""/>
-                <Input placeholder="SUBJECT" type="text" name="subject" required=""/>
+            <form className="col-xs-12 col-sm-12 col-md-12 col-lg-12" onSubmit={this.handleSubmit}>
+                <Input placeholder="NAME" type="text" name="name" onChange={this.handleChange} required/>
+                <Input placeholder="EMAIL" type="text" name="email" onChange={this.handleChange} required/>
+                <Input placeholder="SUBJECT" type="text" name="subject" onChange={this.handleChange} required/>
                 <TextAreaTitle>MESSAGE</TextAreaTitle>
-                <TextArea rows="6" cols="50" name="comment" required=""/>
-                <p className="error"/>
-                <SubmitButton className="submit" type="submit">SUBMIT</SubmitButton>
+                <TextArea rows="6" cols="50" name="message" onChange={this.handleChange} required/>
+                <SubmitButton type="submit">SUBMIT</SubmitButton>
             </form>
         );
     }
