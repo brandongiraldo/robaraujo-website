@@ -48,27 +48,35 @@ const TextAreaTitle = styled.h4`
     color: #676767;
 `;
 
+const fieldState = {
+    value: "",
+    error: ""
+};
+
 export default class Form extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            name: "",
-            email: "",
-            subject: "",
-            message: ""
+            name: {...fieldState},
+            email: {...fieldState},
+            subject: {...fieldState},
+            message: {...fieldState},
         };
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
+        Object.keys(this.state).forEach(key => {
+            this.validateField(key, this.state[key].value);
+        });
         console.log(this.state);
     };
 
     handleChange = (event) => {
         const {name, value} = event.target;
         this.setState({
-            [name] : value
+            [name] : {...fieldState, value}
         }, () => this.validateField(name, value));
     };
 
@@ -78,19 +86,32 @@ export default class Form extends React.Component {
                   const isValidEmail = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
                   break;
               default:
+                  this.validateGenericField(name, value);
                   break;
           }
+    };
+
+    validateGenericField = (name, value) => {
+        if(value.length < 1) {
+            this.setState({
+                [name]: {...fieldState, error: `${name} must be at least 1 character long`}
+            })
+        }
     };
 
 
     render() {
         return (
             <form className="col-xs-12 col-sm-12 col-md-12 col-lg-12" onSubmit={this.handleSubmit}>
-                <Input placeholder="NAME" type="text" name="name" onChange={this.handleChange} required/>
-                <Input placeholder="EMAIL" type="text" name="email" onChange={this.handleChange} required/>
-                <Input placeholder="SUBJECT" type="text" name="subject" onChange={this.handleChange} required/>
+                <Input placeholder="NAME" type="text" name="name" onChange={this.handleChange} />
+                {this.state.name.error && <p>{this.state.name.error}</p>}
+                <Input placeholder="EMAIL" type="text" name="email" onChange={this.handleChange} />
+                {this.state.email.error && <p>{this.state.email.error}</p>}
+                <Input placeholder="SUBJECT" type="text" name="subject" onChange={this.handleChange} />
+                {this.state.subject.error && <p>{this.state.subject.error}</p>}
                 <TextAreaTitle>MESSAGE</TextAreaTitle>
-                <TextArea rows="6" cols="50" name="message" onChange={this.handleChange} required/>
+                <TextArea rows="6" cols="50" name="message" onChange={this.handleChange} />
+                {this.state.message.error && <p>{this.state.message.error}</p>}
                 <SubmitButton type="submit">SUBMIT</SubmitButton>
             </form>
         );
