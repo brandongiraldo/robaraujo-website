@@ -48,34 +48,38 @@ const TextAreaTitle = styled.h4`
     color: #676767;
 `;
 
+const fields = ['name', 'email', 'subject', 'message'];
+
 const fieldState = {
     value: "",
     error: ""
 };
+
+// 👌
+const initialFieldsState = fields.reduce((obj, item) => (obj[item] = {...fieldState}, obj) , {});
 
 export default class Form extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            name: {...fieldState},
-            email: {...fieldState},
-            subject: {...fieldState},
-            message: {...fieldState},
+            ...initialFieldsState,
             hasFormError: true
         };
     }
 
     handleSubmit = (event) => {
-        if(!this.state.hasFormError) this.sendFormData();
-        else Object.keys(this.state)
-            .filter(key => this.state[key].value !== undefined)
-            .forEach(key => this.validateField(key, this.state[key].value))
+        if(!this.state.hasFormError) {
+            this.sendFormData();
+        } else {
+            Object.keys(this.state)
+                .filter(key => this.state[key].value !== undefined)
+                .forEach(key => this.validateField(key, this.state[key].value));
+        }
         event.preventDefault();
     };
 
     handleChange = (event) => {
-        console.log("handleChange");
         const {name, value} = event.target;
         this.setState({
             [name] : {...fieldState, value}
@@ -83,10 +87,13 @@ export default class Form extends React.Component {
     };
 
     validateForm = () => {
-        let hasFormErrors = Object.keys(this.state)
+        const hasFormError = Object.keys(this.state)
             .filter(key => this.state[key].value !== undefined)
-            .filter(key => this.state[key].error.length > 0);
-        console.log(hasFormErrors);
+            .filter(key => this.state[key].value.length < 1 || this.state[key].error.length > 0);
+
+        this.setState({
+            hasFormError: hasFormError.length > 0
+        });
     };
 
     sendFormData = () => {
@@ -94,38 +101,39 @@ export default class Form extends React.Component {
     };
 
     validateField = (name, value) => {
-        console.log(name, value);
         this.validateGenericField(name, value);
         if(name === "email") {
             const isValidEmail = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
             if(!isValidEmail) {
-                this.setState({
-                    [name]: {value: value, error: `${name} must be a in a valid email format`},
-                    hasFormError: true
-                });
+                const error = `${name} must be in a valid email format`;
+                this.setFieldErrorState(name, error);
             } else {
-                this.setState({
-                    [name]: {value: value, error: `${name} must be a in a valid email format`}
-                }, () => {
-                    this.validateForm();
-                });
+                this.resetFieldErrorState(name);
             }
         }
     };
 
     validateGenericField = (name, value) => {
         if(value.length < 1) {
-            this.setState({
-                [name]: {value: value, error: `${name} must be at least 1 character long`},
-                hasFormError: true
-            });
+            const error = `${name} must be at least 1 character long`;
+            this.setFieldErrorState(name, error);
         } else {
-            this.setState({
-                [name]: {value: value, error: ''}
-            }, () => {
-                this.validateForm();
-            });
+            this.resetFieldErrorState(name);
         }
+    };
+
+    setFieldErrorState = (name, error) => {
+        this.setState(state => {
+            return { ...state,
+                [name]: { ...state[name], error },
+                hasFormError: true }
+        });
+    };
+
+    resetFieldErrorState = (name) => {
+        this.setState(state => {
+            return { ...state, [name]: { ...state[name], error: ''}}
+        }, () => this.validateForm());
     };
 
     render() {
