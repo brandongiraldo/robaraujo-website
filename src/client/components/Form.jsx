@@ -62,43 +62,71 @@ export default class Form extends React.Component {
             email: {...fieldState},
             subject: {...fieldState},
             message: {...fieldState},
+            hasFormError: true
         };
     }
 
     handleSubmit = (event) => {
+        if(!this.state.hasFormError) this.sendFormData();
+        else Object.keys(this.state)
+            .filter(key => this.state[key].value !== undefined)
+            .forEach(key => this.validateField(key, this.state[key].value))
         event.preventDefault();
-        Object.keys(this.state).forEach(key => {
-            this.validateField(key, this.state[key].value);
-        });
-        console.log(this.state);
     };
 
     handleChange = (event) => {
+        console.log("handleChange");
         const {name, value} = event.target;
         this.setState({
             [name] : {...fieldState, value}
         }, () => this.validateField(name, value));
     };
 
+    validateForm = () => {
+        let hasFormErrors = Object.keys(this.state)
+            .filter(key => this.state[key].value !== undefined)
+            .filter(key => this.state[key].error.length > 0);
+        console.log(hasFormErrors);
+    };
+
+    sendFormData = () => {
+      console.log("Submitted data", this.state);
+    };
+
     validateField = (name, value) => {
-          switch (name) {
-              case "email":
-                  const isValidEmail = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-                  break;
-              default:
-                  this.validateGenericField(name, value);
-                  break;
-          }
+        console.log(name, value);
+        this.validateGenericField(name, value);
+        if(name === "email") {
+            const isValidEmail = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+            if(!isValidEmail) {
+                this.setState({
+                    [name]: {value: value, error: `${name} must be a in a valid email format`},
+                    hasFormError: true
+                });
+            } else {
+                this.setState({
+                    [name]: {value: value, error: `${name} must be a in a valid email format`}
+                }, () => {
+                    this.validateForm();
+                });
+            }
+        }
     };
 
     validateGenericField = (name, value) => {
         if(value.length < 1) {
             this.setState({
-                [name]: {...fieldState, error: `${name} must be at least 1 character long`}
-            })
+                [name]: {value: value, error: `${name} must be at least 1 character long`},
+                hasFormError: true
+            });
+        } else {
+            this.setState({
+                [name]: {value: value, error: ''}
+            }, () => {
+                this.validateForm();
+            });
         }
     };
-
 
     render() {
         return (
