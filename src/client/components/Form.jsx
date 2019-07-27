@@ -8,7 +8,6 @@ const Input = styled.input`
     border-bottom: 1px solid white;
     padding: 7px 0px 7px 5px;
     color: #FFFFFF;
-    margin-bottom: 15px;
     outline: none;
     width: 40%;
     border-radius: 0px;
@@ -48,6 +47,13 @@ const TextAreaTitle = styled.h4`
     color: #676767;
 `;
 
+const ErrorField = styled.p`
+    visibility: visible;
+    display: inline-block;
+    font-size: 14px;
+    color: red;
+`;
+
 const fields = ['name', 'email', 'subject', 'message'];
 
 const fieldState = {
@@ -55,7 +61,6 @@ const fieldState = {
     error: ""
 };
 
-// 👌
 const initialFieldsState = fields.reduce((obj, item) => (obj[item] = {...fieldState}, obj) , {});
 
 export default class Form extends React.Component {
@@ -81,18 +86,19 @@ export default class Form extends React.Component {
 
     handleChange = (event) => {
         const {name, value} = event.target;
-        this.setState({
-            [name] : {...fieldState, value}
+        this.setState(state => {
+            return { ...state, [name] : {...fieldState, value} }
         }, () => this.validateField(name, value));
     };
 
     validateForm = () => {
+        // TODO: reactor into boolean instead of array
         const hasFormError = Object.keys(this.state)
             .filter(key => this.state[key].value !== undefined)
             .filter(key => this.state[key].value.length < 1 || this.state[key].error.length > 0);
 
-        this.setState({
-            hasFormError: hasFormError.length > 0
+        this.setState(state => {
+            return { ...state, hasFormError: hasFormError.length > 0 }
         });
     };
 
@@ -140,14 +146,14 @@ export default class Form extends React.Component {
         return (
             <form className="col-xs-12 col-sm-12 col-md-12 col-lg-12" onSubmit={this.handleSubmit}>
                 <Input placeholder="NAME" type="text" name="name" onChange={this.handleChange} />
-                {this.state.name.error && <p>{this.state.name.error}</p>}
+                <ErrorField>{this.state.name.error ? this.state.name.error : ' '}</ErrorField>
                 <Input placeholder="EMAIL" type="text" name="email" onChange={this.handleChange} />
-                {this.state.email.error && <p>{this.state.email.error}</p>}
+                <ErrorField>{this.state.email.error ? this.state.email.error : ' '}</ErrorField>
                 <Input placeholder="SUBJECT" type="text" name="subject" onChange={this.handleChange} />
-                {this.state.subject.error && <p>{this.state.subject.error}</p>}
+                <ErrorField>{this.state.subject.error ? this.state.subject.error : ' '}</ErrorField>
                 <TextAreaTitle>MESSAGE</TextAreaTitle>
                 <TextArea rows="6" cols="50" name="message" onChange={this.handleChange} />
-                {this.state.message.error && <p>{this.state.message.error}</p>}
+                <ErrorField>{this.state.message.error ? this.state.message.error : ' '}</ErrorField>
                 <SubmitButton type="submit">SUBMIT</SubmitButton>
             </form>
         );
